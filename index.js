@@ -10,6 +10,7 @@ const CustomerMessages = require("./modules/CustomerMessages");
 const CustomerOrders = require("./modules/CustomerOrders");
 const Admins = require("./modules/Admins");
 const SiteSettings = require("./modules/SiteSettings");
+const SliderImages = require("./modules/SliderImages");
 dotenv.config();
 
 const app = express();
@@ -44,6 +45,7 @@ async function run() {
     const customerOrder = database.collection("all-customer-orders");
     const allAdmins = database.collection("all-admins");
     const allSiteSettings = database.collection("all-allSiteSettings");
+    const sliderImages = database.collection("all-SliderImages");
 
     //============ Modules API ============= 
     AddProductsItem(addProducts , app);
@@ -54,6 +56,7 @@ async function run() {
     CustomerOrders(customerOrder , app);
     Admins(allAdmins , app);
     SiteSettings(allSiteSettings , app);
+    SliderImages(sliderImages , app);
     
     
     // Send a ping to confirm a successful connection
