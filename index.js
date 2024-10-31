@@ -16,19 +16,34 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+console.log(process.env.DB_USER)
+
 // Middleware
 app.use(cors()); // Enable CORS for all routes
 app.use(express.json()); // Parse incoming JSON request bodies
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.umuhy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+// const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.g0oqi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
     deprecationErrors: true,
-  },
+  }
 });
+
+
+// var uri="mongodb://aniktawhidbd:<db_password>@<hostname>/?ssl=true&replicaSet=atlas-yakmff-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0";
+
+// MongoClient.connect(uri, function(err, client) {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// });
+
+
 
 async function run() {
   try {
