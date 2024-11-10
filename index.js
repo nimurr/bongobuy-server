@@ -12,15 +12,18 @@ const Admins = require("./modules/Admins");
 const SiteSettings = require("./modules/SiteSettings");
 const SliderImages = require("./modules/SliderImages");
 dotenv.config();
-
 const app = express();
 const port = process.env.PORT || 3000;
+const helmet = require('helmet');
 
-console.log(process.env.DB_USER)
+// console.log(process.env.DB_USER)
+
+
 
 // Middleware
 app.use(cors()); // Enable CORS for all routes
 app.use(express.json()); // Parse incoming JSON request bodies
+app.use(helmet())
 
 // const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.g0oqi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
