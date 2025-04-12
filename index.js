@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
-const dotenv = require("dotenv"); 
+const dotenv = require("dotenv");
 const AddProductsItem = require("./modules/AddProducts");
 const AllReviewsItems = require("./modules/AllReviews");
 const UserInformation = require("./modules/UserInformation");
@@ -13,7 +13,7 @@ const SiteSettings = require("./modules/SiteSettings");
 const SliderImages = require("./modules/SliderImages");
 dotenv.config();
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const helmet = require('helmet');
 
 // console.log(process.env.DB_USER)
@@ -26,7 +26,8 @@ app.use(express.json()); // Parse incoming JSON request bodies
 app.use(helmet())
 
 // const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.g0oqi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+// use local host 
+const uri = 'mongodb://localhost:27017';
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -66,17 +67,17 @@ async function run() {
     const sliderImages = database.collection("all-SliderImages");
 
     //============ Modules API ============= 
-    AddProductsItem(addProducts , app);
-    AllReviewsItems(allReviews , app);
-    UserInformation(UserInfo , app);
-    AllCategories(allCategories , app);
-    CustomerMessages(customerMessage , app);
-    CustomerOrders(customerOrder , app);
-    Admins(allAdmins , app);
-    SiteSettings(allSiteSettings , app);
-    SliderImages(sliderImages , app);
-    
-    
+    AddProductsItem(addProducts, app);
+    AllReviewsItems(allReviews, app);
+    UserInformation(UserInfo, app);
+    AllCategories(allCategories, app);
+    CustomerMessages(customerMessage, app);
+    CustomerOrders(customerOrder, app);
+    Admins(allAdmins, app);
+    SiteSettings(allSiteSettings, app);
+    SliderImages(sliderImages, app);
+
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
@@ -90,7 +91,7 @@ async function run() {
 run().catch(console.dir);
 
 
-app.get('/check', (req, res)=>{
+app.get('/check', (req, res) => {
   res.send('Check Is ready to !!');
 })
 app.get("/", (req, res) => {

@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "netlify deploy --prod"
+    "dev": "nodemon index.js",
+    "build": "netlify deploy --prod",
+    "start": "node index.js --port 5000"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +21,7 @@
     "mongodb": "^6.8.0",
     "netlify-cli": "^17.36.2",
     "netlify-lambda": "^2.0.16",
+    "nodemon": "^3.1.9",
     "punycode": "^2.3.1",
     "sslcommerz-lts": "^1.1.0"
   },
